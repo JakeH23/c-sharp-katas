@@ -4,7 +4,7 @@ Welcome to the C# katas repo!
 
 `Katas.sln` contains two projects - `KatasProject` and `Test`. `KatasProject` contains both the methods you need to complete (`Katas.cs`) and a few classes that are used by those methods (`Models.cs`).
 
-`Test` contains `KatasTest` - where you'll be writing your unit tests. Some unit tests for `AreCatsDominant` have been provided.
+`Test` contains `KatasTest` - where you'll be writing your unit tests. Some unit tests for the first few katas have been provided.
 
 ## Katas
 
