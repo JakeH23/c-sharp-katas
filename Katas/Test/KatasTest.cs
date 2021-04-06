@@ -176,7 +176,7 @@ namespace Test
             var loyalAgents = _testClass.CounterSpy(agents);
 
             // assert
-            Assert.Equal(agents, loyalAgents);
+            Assert.Empty(loyalAgents);
         }
 
         [Fact]
