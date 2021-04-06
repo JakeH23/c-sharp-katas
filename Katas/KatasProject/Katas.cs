@@ -1,19 +1,81 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Katas.Models;
 
 namespace Katas
 {
     public class KatasClass
     {
+        ///////////////
+        /// Numbers
+
+        public int MultiplyNums(int num1, int num2)
+        {
+            return 0;
+        }
+
+     
+
+        public int SumArgs(params int[] nums)
+        {
+            return 0;
+        }
+
+        public int Fibonacci(int num)
+        {
+            return 0;
+        }
+
+        public int CalculateDivisors(int num)
+        {
+            return 0;
+        }
+
+        ////////////////////////
+        /// Classes and Types
+
+        public DugTrio EvolvePokemon(Diglett diglett)
+        {
+            return null;
+        }
+
+
+        public List<Agent> CounterSpy(List<Agent> agents)
+        {
+            return new List<Agent> { };
+        }
+
+
+        public string HeroCareerChange(Hero hero)
+        {
+            return "";
+        }
+
         public bool? AreCatsDominant(List<Animal> animals)
         {
             return true;
         }
 
+        ///////////////
+        /// Strings
+
+        public string PigLatin(string sentence)
+        {
+            return "";
+        }
+
         public string ConvertToSassCase(string input)
         {
             return "";
+        }
+
+        ////////////////////////////////
+        /// LINQ
+
+        public int GetLargestNum(List<int> nums)
+        {
+            return 0;
         }
 
         public List<Customer> CheckHeight(List<Customer> customers)
@@ -39,6 +101,16 @@ namespace Katas
         public Artwork[] TriageArtworks(List<Artwork> submissions, DateTime cutoffDate)
         {
             return new Artwork[0];
+        }
+
+        /////////////////////////////////////////////
+        /// Dont touch this method!
+        /// It's used in the HeroCareerChange kata!
+        ///
+
+        private string GetDestiny(Villager villager)
+        {
+            return villager.Name.Length % 2 == 0 ? "Mage" : "Druid";
         }
     }
 }
