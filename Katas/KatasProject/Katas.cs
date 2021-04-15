@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using Katas.Models;
 
-namespace Katas
+namespace Katas.Base
 {
-    public class KatasClass
+    public class KatasBase
     {
         ///////////////
         /// Numbers
@@ -46,10 +45,20 @@ namespace Katas
             return new List<Agent> { };
         }
 
-
         public string HeroCareerChange(Hero hero)
         {
-            return "";
+            var destiny = GetDestiny(hero);
+
+            if (destiny == "Druid")
+            {
+                var druid = new Druid { Name = hero.Name };
+                return druid.BattleCry;
+            }
+            else
+            {
+                var mage = new Mage { Name = hero.Name };
+                return mage.BattleCry;
+            }
         }
 
         public bool? AreCatsDominant(List<Animal> animals)
@@ -70,39 +79,6 @@ namespace Katas
             return "";
         }
 
-        ////////////////////////////////
-        /// LINQ
-
-        public int GetLargestNum(List<int> nums)
-        {
-            return 0;
-        }
-
-        public List<Customer> CheckHeight(List<Customer> customers)
-        {
-            return new List<Customer>();
-        }
-
-        public Dictionary<string, int> TwitterFeedAnalysis(IEnumerable<string> twitterFeed)
-        {
-            return new Dictionary<string, int>();
-        }
-
-        public List<User> UpdateUserNotes(IEnumerable<User> users, IEnumerable<Note> updatedNotes)
-        {
-            return new List<User>();
-        }
-
-        public Dictionary<string, List<string>> CategoriseCustomerIds(List<Customer> customers, List<Guid> currentGuids)
-        {
-            return new Dictionary<string, List<string>>();
-        }
-
-        public Artwork[] TriageArtworks(List<Artwork> submissions, DateTime cutoffDate)
-        {
-            return new Artwork[0];
-        }
-
         /////////////////////////////////////////////
         /// Dont touch this method!
         /// It's used in the HeroCareerChange kata!
@@ -110,7 +86,7 @@ namespace Katas
 
         private string GetDestiny(Villager villager)
         {
-            return villager.Name.Length % 2 == 0 ? "Mage" : "Druid";
+            return villager.Name.Length % 2 == 0 ? "Druid" : "Mage";
         }
     }
 }

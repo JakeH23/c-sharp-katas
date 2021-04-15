@@ -23,8 +23,9 @@ namespace Katas.Models
 
     public class Customer
     {
-        public string Id { get; set; }
-        public string Name { get; set; }
+        public Guid Id { get; set; }
+        public string FirstName { get; set; }
+        public string Surname { get; set; }
         public int HeightCM { get; set; }
     }
 
