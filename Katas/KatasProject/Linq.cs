@@ -8,126 +8,129 @@ namespace Katas.Linq
 {
     public class LinqKatas : KatasBase
     {
-        // #1 return the largest int from the list, or zero if empty list
+        // #1 return the largest int in the list, or zero if the list is empty
+
         public int GetLargestNum(List<int> nums)
         {
             return 0;
         }
 
-        // #2 return first customer in list, or null if empty list
-        public Customer GetFirstCustomer(List<Customer> customers)
+        // #2 return the first person in list, or null if the list is empty
+
+        public Person GetFirstPerson(List<Person> people)
         {
             return null;
         }
 
-        // #3 return first customer in list who is above this height, or null
-        public Customer GetFirstCustomerOver(List<Customer> customers, int heightCM)
+        // #3 return the first person in list who is above a given height, or null if there's no match
+
+        public Person GetFirstPersonOver(List<Person> people, int heightCM)
         {
             return null;
         }
 
-        // #4 returns only customer with this name, or null if none/multiple found
+        // #4 return the only person with this name, or null if none/multiple found
 
-        public Customer GetUniqueCustomerByFirstName(List<Customer> customers, string firstName)
+        public Person GetPersonByFirstName(List<Person> people, string firstName)
         {
             return null;
         }
 
-        // #5 returns boolean - tells us if there is at least one customer with this name
+        // #5 return a boolean to indicate if there is at least one person with this name
 
-        public bool CheckIfCustomerExists(List<Customer> customers, string firstName)
+        public bool CheckIfPersonExists(List<Person> people, string firstName)
         {
             return false;
         }
 
-        // #6 return the surnames of all customers
+        // #6 return the surnames of all people
 
-        public IEnumerable<string> GetSurnames(List<Customer> customers)
+        public IEnumerable<string> GetSurnames(List<Person> people)
         {
             return null;
         }
 
-        // #7 return the first names of all customers with a given surname 
+        // #7 return the first names of all people with a given surname 
 
-        public IEnumerable<string> GetAllFirstNamesOfFamilyMembers(List<Customer> customers, string surname)
+        public IEnumerable<string> GetAllFirstNamesOfFamilyMembers(List<Person> people, string surname)
         {
             return null;
         }
 
-        // #8 return the customers ordered by their height ascending
+        // #8 return the people ordered by their height ascending
 
-        public IEnumerable<Customer> OrderCustomersByHeight(List<Customer> customers)
+        public IEnumerable<Person> OrderPeopleByHeight(List<Person> people)
         {
             return null;
         }
 
-        // #9 return average height of customers or 0 if empty
+        // #9 return average height of people or 0 if empty
 
-        public float CalculateAverageHeight(List<Customer> customers)
+        public float CalculateAverageHeight(List<Person> people)
         {
             return 0;
         }
 
-        // #10 return a dictionary of id/"firstName+surname" k/v pairs
+        // #10 return a dictionary of id/"firstName+surname" key/vvalue pairs
 
-        public Dictionary<Guid, string> CustomerDictionary(List<Customer> customers)
+        public Dictionary<Guid, string> CustomerDictionary(List<Person> people)
         {
             return null;
         }
 
-        // #11 returns a bool - tell us if all customers are over a certain height
+        // #11 returns a boolean that tell us if all people are over a certain height
 
-        public bool CheckAllCustomersTallEnough(List<Customer> customers, int heightCM)
+        public bool CheckAllPeopleTallEnough(List<Person> people, int heightCM)
         {
             return false;
         }
 
-        // #12 returns a list of customers de-duplicated on surname ??? distinct on surname ?? improve description!
+        // #12 returns a list of people de-duplicated by surname (max one of each family member)
 
-        public List<Customer> GetFirstOfEachFamily(List<Customer> customers)
+        public List<Person> GetFirstOfEachFamily(List<Person> people)
         {
             return null;
         }
 
-        // #13 return customers grouped by surname
+        // #13 return people grouped by surname
 
-        public IDictionary<string, List<Customer>> GroupIntoFamilies(List<Customer> customers)
+        public IDictionary<string, List<Person>> GroupIntoFamilies(List<Person> people)
         {
             return null;
         }
 
-        // #14 return a dictionary of surname / avg height for customers with surname <"Jones", 180cm>
-
-        // #15 hashset - improve description
-
-        // #16 return the Id of the tallest member of each family
-
-        // #17
+        // #14
 
         public Dictionary<string, int> TwitterFeedAnalysis(IEnumerable<string> twitterFeed)
         {
-            return new Dictionary<string, int>();
+            return null;
         }
 
-        // #18
+        // #15
 
         public List<User> UpdateUserNotes(IEnumerable<User> users, IEnumerable<Note> updatedNotes)
         {
-            return new List<User>();
+            return null;
         }
 
-        // #19
+        // #16
 
-        public Dictionary<string, List<string>> CategoriseCustomerIds(List<Customer> customers, List<Guid> currentGuids)
+        public Dictionary<string, List<string>> CategoriseCustomerIds(List<Person> customers, List<Guid> currentGuids)
         {
-            return new Dictionary<string, List<string>>();
+            return null;
         }
 
-        // #20
+        // #17
 
         public Artwork[] TriageArtworks(List<Artwork> submissions, DateTime cutoffDate)
         {
-            return new Artwork[0];
+            return null;
         }
+
+        // #18 return a dictionary of string/surname + float/avg height for customers with surname <"Jones", 180cm>
+
+        // #19 hashset - improve description
+
+        // #20 return the Id of the tallest member of each family
     }
 }
