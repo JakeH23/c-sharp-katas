@@ -11,23 +11,23 @@ namespace Katas.Test
     {
         internal LinqKatas _linqKatas = new LinqKatas();
 
-        internal List<Customer> BuildCustomers(int count)
+        internal List<Person> BuildPeople(int count)
         {
-            var customers = new List<Customer>();
+            var people = new List<Person>();
 
             for (int i = 0; i < count; i++)
             {
-                var customer = new Customer
+                var person = new Person
                 {
                     Id = Guid.NewGuid(),
                     FirstName = "Steve",
                     Surname = "Sharky",
                     HeightCM = 180 + i,
                 };
-                customers.Add(customer);
+                people.Add(person);
             }
 
-            return customers;
+            return people;
         }
     }
 
@@ -77,96 +77,96 @@ namespace Katas.Test
 
     // #2
 
-    public class GetFirstCustomer : LinqTests
+    public class GetFirstPerson : LinqTests
     {
         [Fact]
         public void GivenEmptyList_ReturnsNull()
         {
             // arrange
-            var customers = new List<Customer>();
+            var people = new List<Person>();
 
             // act
-            var result = _linqKatas.GetFirstCustomer(customers);
+            var result = _linqKatas.GetFirstPerson(people);
 
             // assert
             Assert.Null(result);
         }
 
         [Fact]
-        public void GivenList_ReturnsFirstCustomer()
+        public void GivenList_ReturnsFirstPerson()
         {
             // arrange
-            var customers = BuildCustomers(5);
+            var people = BuildPeople(5);
 
-            var firstCustomer = customers[0];
+            var firstPerson = people[0];
 
-            firstCustomer.Id = Guid.NewGuid();
-            firstCustomer.FirstName = "Kendrick";
-            firstCustomer.Surname = "Lamar";
-            firstCustomer.HeightCM = 168;
+            firstPerson.Id = Guid.NewGuid();
+            firstPerson.FirstName = "Kendrick";
+            firstPerson.Surname = "Lamar";
+            firstPerson.HeightCM = 168;
 
             // act
-            var result = _linqKatas.GetFirstCustomer(customers);
+            var result = _linqKatas.GetFirstPerson(people);
 
             // assert
-            Assert.Equal(result.Id, firstCustomer.Id);
-            Assert.Equal(result.FirstName, firstCustomer.FirstName);
-            Assert.Equal(result.Surname, firstCustomer.Surname);
-            Assert.Equal(result.HeightCM, firstCustomer.HeightCM);
+            Assert.Equal(result.Id, firstPerson.Id);
+            Assert.Equal(result.FirstName, firstPerson.FirstName);
+            Assert.Equal(result.Surname, firstPerson.Surname);
+            Assert.Equal(result.HeightCM, firstPerson.HeightCM);
         }
     }
 
     // #3
 
-    public class GetFirstCustomerOver : LinqTests
+    public class GetFirstPersonOver : LinqTests
     {
         [Fact]
         public void GivenEmptyList_ReturnsNull()
         {
             // arrange
-            var customers = new List<Customer>();
+            var people = new List<Person>();
 
             // act
-            var result = _linqKatas.GetFirstCustomerOver(customers, 0);
+            var result = _linqKatas.GetFirstPersonOver(people, 0);
 
             // assert
             Assert.Null(result);
         }
 
         [Fact]
-        public void GivenNoCustomersOverHeight_ReturnsNull()
+        public void GivenNopeopleOverHeight_ReturnsNull()
         {
             // arrange
-            var customers = BuildCustomers(5);
+            var people = BuildPeople(5);
 
             // act
-            var result = _linqKatas.GetFirstCustomerOver(customers, 99999);
+            var result = _linqKatas.GetFirstPersonOver(people, 99999);
 
             // assert
             Assert.Null(result);
         }
 
         [Fact]
-        public void GivenMultipleCustomersOverHeight_ReturnsFirst()
+        public void GivenMultiplepeopleOverHeight_ReturnsFirst()
         {
             // arrange
-            var customers = BuildCustomers(10);
+            var people = BuildPeople(10);
 
-            customers[1].HeightCM = 260;
-            customers[3].HeightCM = 240;
-            customers[4].HeightCM = 221;
+            people[1].HeightCM = 260;
+            people[3].HeightCM = 240;
+            people[4].HeightCM = 221;
 
             // act
-            var result = _linqKatas.GetFirstCustomerOver(customers, 220);
+            var result = _linqKatas.GetFirstPersonOver(people, 220);
 
             // assert
-            Assert.Equal(result.Id, customers[1].Id);
+            Assert.Equal(result.Id, people[1].Id);
         }
     }
 
     // #4
 
-    public class GetUniqueCustomerByFirstName : LinqTests
+    public class GetUniquePersonByFirstName : LinqTests
     {
         private string TargetName = "Freddy";
 
@@ -174,10 +174,10 @@ namespace Katas.Test
         public void GivenEmptyList_ReturnsNull()
         {
             // arrange
-            var customers = new List<Customer>();
+            var people = new List<Person>();
 
             // act
-            var result = _linqKatas.GetUniqueCustomerByFirstName(customers, TargetName);
+            var result = _linqKatas.GetPersonByFirstName(people, TargetName);
 
             // assert
             Assert.Null(result);
@@ -187,39 +187,39 @@ namespace Katas.Test
         public void GivenMultipleMatchesInList_ReturnsNull()
         {
             // arrange
-            var customers = BuildCustomers(5);
+            var people = BuildPeople(5);
 
-            customers[0].FirstName = TargetName;
-            customers[1].FirstName = TargetName;
+            people[0].FirstName = TargetName;
+            people[1].FirstName = TargetName;
 
             // act
-            var result = _linqKatas.GetUniqueCustomerByFirstName(customers, TargetName);
+            var result = _linqKatas.GetPersonByFirstName(people, TargetName);
 
             // assert
             Assert.Null(result);
         }
 
         [Fact]
-        public void GivenSingleMatchInList_ReturnsCustomer()
+        public void GivenSingleMatchInList_ReturnsPerson()
         {
             // arrange
-            var customers = BuildCustomers(5);
-            var firstCustomer = customers[0];
+            var people = BuildPeople(5);
+            var firstPerson = people[0];
 
-            firstCustomer.FirstName = TargetName;
+            firstPerson.FirstName = TargetName;
 
             // act
-            var result = _linqKatas.GetUniqueCustomerByFirstName(customers, TargetName);
+            var result = _linqKatas.GetPersonByFirstName(people, TargetName);
 
             // assert
-            Assert.Equal(result.Id, firstCustomer.Id);
-            Assert.Equal(result.FirstName, firstCustomer.FirstName);
+            Assert.Equal(result.Id, firstPerson.Id);
+            Assert.Equal(result.FirstName, firstPerson.FirstName);
         }
     }
 
     // #5
 
-    public class CheckIfCustomerExists : LinqTests
+    public class CheckIfPersonExists : LinqTests
     {
         private string TargetName = "Freddy";
 
@@ -227,10 +227,10 @@ namespace Katas.Test
         public void GivenEmptyList_ReturnsFalse()
         {
             // arrange
-            var customers = new List<Customer>();
+            var people = new List<Person>();
 
             // act
-            var result = _linqKatas.CheckIfCustomerExists(customers, TargetName);
+            var result = _linqKatas.CheckIfPersonExists(people, TargetName);
 
             // assert
             Assert.False(result);
@@ -240,10 +240,10 @@ namespace Katas.Test
         public void GivenNoMatch_ReturnsFalse()
         {
             // arrange
-            var customers = BuildCustomers(5);
+            var people = BuildPeople(5);
 
             // act
-            var result = _linqKatas.CheckIfCustomerExists(customers, TargetName);
+            var result = _linqKatas.CheckIfPersonExists(people, TargetName);
 
             // assert
             Assert.False(result);
@@ -253,12 +253,12 @@ namespace Katas.Test
         public void GivenMatch_ReturnsTrue()
         {
             // arrange
-            var customers = BuildCustomers(5);
+            var people = BuildPeople(5);
 
-            customers[0].FirstName = TargetName;
+            people[0].FirstName = TargetName;
 
             // act
-            var result = _linqKatas.GetUniqueCustomerByFirstName(customers, TargetName);
+            var result = _linqKatas.CheckIfPersonExists(people, TargetName);
 
             // assert
             Assert.Null(result);
@@ -268,13 +268,13 @@ namespace Katas.Test
         public void GivenMultipleMatches_ReturnsTrue()
         {
             // arrange
-            var customers = BuildCustomers(5);
+            var people = BuildPeople(5);
 
-            customers[0].FirstName = TargetName;
-            customers[1].FirstName = TargetName;
+            people[0].FirstName = TargetName;
+            people[1].FirstName = TargetName;
 
             // act
-            var result = _linqKatas.GetUniqueCustomerByFirstName(customers, TargetName);
+            var result = _linqKatas.CheckIfPersonExists(people, TargetName);
 
             // assert
             Assert.Null(result);
@@ -289,27 +289,27 @@ namespace Katas.Test
         public void GivenEmptyList_ReturnsEmpty()
         {
             // arrange
-            var customers = new List<Customer>();
+            var people = new List<Person>();
 
             // act
-            var result = _linqKatas.GetSurnames(customers);
+            var result = _linqKatas.GetSurnames(people);
 
             // assert
             Assert.Empty(result);
         }
 
         [Fact]
-        public void GivenCustomers_ReturnsSurnames()
+        public void Givenpeople_ReturnsSurnames()
         {
             // arrange
-            var customers = BuildCustomers(3);
+            var people = BuildPeople(3);
 
-            customers[0].Surname = "Ali";
-            customers[1].Surname = "Brown";
-            customers[2].Surname = "Carlson";
+            people[0].Surname = "Ali";
+            people[1].Surname = "Brown";
+            people[2].Surname = "Carlson";
 
             // act
-            var result = _linqKatas.GetSurnames(customers);
+            var result = _linqKatas.GetSurnames(people);
 
             // assert
             Assert.Equal("Ali", result.ElementAt(0));
@@ -326,10 +326,10 @@ namespace Katas.Test
         public void GivenEmptyList_ReturnsEmpty()
         {
             // arrange
-            var customers = new List<Customer>();
+            var people = new List<Person>();
 
             // act
-            var result = _linqKatas.GetAllFirstNamesOfFamilyMembers(customers, "");
+            var result = _linqKatas.GetAllFirstNamesOfFamilyMembers(people, "");
 
             // assert
             Assert.Empty(result);
@@ -339,10 +339,10 @@ namespace Katas.Test
         public void GivenNoMatches_ReturnsEmpty()
         {
             // arrange
-            var customers = BuildCustomers(10);
+            var people = BuildPeople(10);
 
             // act
-            var result = _linqKatas.GetAllFirstNamesOfFamilyMembers(customers, "Martin");
+            var result = _linqKatas.GetAllFirstNamesOfFamilyMembers(people, "Martin");
 
             // assert
             Assert.Empty(result);
@@ -352,17 +352,17 @@ namespace Katas.Test
         public void GivenMatches_ReturnsFirstNames()
         {
             // arrange
-            var customers = BuildCustomers(5);
+            var people = BuildPeople(5);
 
-            customers[0].FirstName = "Sarah";
-            customers[0].Surname = "Ali";
-            customers[1].FirstName = "Susan";
-            customers[1].Surname = "Ali";
-            customers[2].FirstName = "Shelly";
-            customers[2].Surname = "Ali";
+            people[0].FirstName = "Sarah";
+            people[0].Surname = "Ali";
+            people[1].FirstName = "Susan";
+            people[1].Surname = "Ali";
+            people[2].FirstName = "Shelly";
+            people[2].Surname = "Ali";
 
             // act
-            var result = _linqKatas.GetAllFirstNamesOfFamilyMembers(customers, "Ali");
+            var result = _linqKatas.GetAllFirstNamesOfFamilyMembers(people, "Ali");
 
             // assert
             Assert.True(result.Count() == 3);
@@ -374,43 +374,43 @@ namespace Katas.Test
 
     // #8
 
-    public class OrderCustomersByHeight : LinqTests
+    public class OrderpeopleByHeight : LinqTests
     {
         [Fact]
         public void GivenEmptyList_ReturnsEmpty()
         {
             // arrange
-            var customers = new List<Customer>();
+            var people = new List<Person>();
 
             // act
-            var result = _linqKatas.OrderCustomersByHeight(customers);
+            var result = _linqKatas.OrderPeopleByHeight(people);
 
             // assert
             Assert.Empty(result);
         }
 
         [Fact]
-        public void GivenCustomers_ReturnsOrderedAsc()
+        public void Givenpeople_ReturnsOrderedAsc()
         {
             // arrange
-            var customers = BuildCustomers(5);
+            var people = BuildPeople(5);
 
-            customers[0].HeightCM = 140;
-            customers[1].HeightCM = 120;
-            customers[2].HeightCM = 160;
-            customers[3].HeightCM = 170;
-            customers[4].HeightCM = 110;
+            people[0].HeightCM = 140;
+            people[1].HeightCM = 120;
+            people[2].HeightCM = 160;
+            people[3].HeightCM = 170;
+            people[4].HeightCM = 110;
 
             // act
-            var result = _linqKatas.OrderCustomersByHeight(customers);
+            var result = _linqKatas.OrderPeopleByHeight(people);
 
             // assert
             Assert.True(result.Count() == 5);
-            Assert.Equal(customers[4].Id, result.ElementAt(0).Id);
-            Assert.Equal(customers[1].Id, result.ElementAt(1).Id);
-            Assert.Equal(customers[0].Id, result.ElementAt(2).Id);
-            Assert.Equal(customers[2].Id, result.ElementAt(3).Id);
-            Assert.Equal(customers[3].Id, result.ElementAt(4).Id);
+            Assert.Equal(people[4].Id, result.ElementAt(0).Id);
+            Assert.Equal(people[1].Id, result.ElementAt(1).Id);
+            Assert.Equal(people[0].Id, result.ElementAt(2).Id);
+            Assert.Equal(people[2].Id, result.ElementAt(3).Id);
+            Assert.Equal(people[3].Id, result.ElementAt(4).Id);
         }
     }
 
@@ -422,42 +422,42 @@ namespace Katas.Test
         public void GivenEmptyList_Returns0()
         {
             // arrange
-            var customers = new List<Customer>();
+            var people = new List<Person>();
 
             // act
-            var result = _linqKatas.CalculateAverageHeight(customers);
+            var result = _linqKatas.CalculateAverageHeight(people);
 
             // assert
             Assert.True(result == 0);
         }
 
         [Fact]
-        public void GivenSingleCustomer_ReturnsHeight()
+        public void GivenSinglePerson_ReturnsHeight()
         {
             // arrange
-            var customers = BuildCustomers(1);
+            var people = BuildPeople(1);
 
-            customers[0].HeightCM = 180;
+            people[0].HeightCM = 180;
 
             // act
-            var result = _linqKatas.CalculateAverageHeight(customers);
+            var result = _linqKatas.CalculateAverageHeight(people);
 
             // assert
             Assert.True(result == 180);
         }
 
         [Fact]
-        public void GivenCustomers_ReturnsAverage()
+        public void Givenpeople_ReturnsAverage()
         {
             // arrange
-            var customers = BuildCustomers(3);
+            var people = BuildPeople(3);
 
-            customers[0].HeightCM = 180;
-            customers[0].HeightCM = 200;
-            customers[0].HeightCM = 220;
+            people[0].HeightCM = 180;
+            people[0].HeightCM = 200;
+            people[0].HeightCM = 220;
 
             // act
-            var result = _linqKatas.CalculateAverageHeight(customers);
+            var result = _linqKatas.CalculateAverageHeight(people);
 
             // assert
             Assert.True(result == 200);
@@ -466,56 +466,56 @@ namespace Katas.Test
 
     // #10
 
-    public class CustomerDictionary : LinqTests
+    public class PersonDictionary : LinqTests
     {
         [Fact]
         public void GivenEmptyList_ReturnsEmptyDictionary()
         {
             // arrange
-            var customers = new List<Customer>();
+            var people = new List<Person>();
 
             // act
-            var result = _linqKatas.CustomerDictionary(customers);
+            var result = _linqKatas.CustomerDictionary(people);
 
             // assert
             Assert.Empty(result);
         }
 
         [Fact]
-        public void GivenCustomers_ReturnsDictionary()
+        public void Givenpeople_ReturnsDictionary()
         {
             // arrange
-            var customers = BuildCustomers(3);
+            var people = BuildPeople(3);
 
             // act
-            var result = _linqKatas.CustomerDictionary(customers);
+            var result = _linqKatas.CustomerDictionary(people);
 
             // assert
             var first = result.ElementAt(0);
             var second = result.ElementAt(1);
             var third = result.ElementAt(2);
 
-            Assert.Equal(first.Key, customers[0].Id);
-            Assert.Equal(first.Value, customers[0].FirstName + customers[0].Surname);
-            Assert.Equal(second.Key, customers[1].Id);
-            Assert.Equal(second.Value, customers[1].FirstName + customers[1].Surname);
-            Assert.Equal(third.Key, customers[2].Id);
-            Assert.Equal(third.Value, customers[2].FirstName + customers[2].Surname);
+            Assert.Equal(first.Key, people[0].Id);
+            Assert.Equal(first.Value, people[0].FirstName + people[0].Surname);
+            Assert.Equal(second.Key, people[1].Id);
+            Assert.Equal(second.Value, people[1].FirstName + people[1].Surname);
+            Assert.Equal(third.Key, people[2].Id);
+            Assert.Equal(third.Value, people[2].FirstName + people[2].Surname);
         }
     }
 
     // #11
 
-    public class CheckAllCustomersTallEnough : LinqTests
+    public class CheckAllpeopleTallEnough : LinqTests
     {
         [Fact]
         public void GivenEmptyList_ReturnsFalse()
         {
             // arrange
-            var customers = new List<Customer>();
+            var people = new List<Person>();
 
             // act
-            var result = _linqKatas.CheckAllCustomersTallEnough(customers, 999);
+            var result = _linqKatas.CheckAllPeopleTallEnough(people, 999);
 
             // assert
             Assert.False(result);
@@ -525,12 +525,12 @@ namespace Katas.Test
         public void GivenOneTooShort_ReturnsFalse()
         {
             // arrange
-            var customers = BuildCustomers(10);
+            var people = BuildPeople(10);
 
-            customers[0].HeightCM = 100;
+            people[0].HeightCM = 100;
 
             // act
-            var result = _linqKatas.CheckAllCustomersTallEnough(customers, 101);
+            var result = _linqKatas.CheckAllPeopleTallEnough(people, 101);
 
             // assert
             Assert.False(result);
@@ -540,10 +540,10 @@ namespace Katas.Test
         public void GivenAllTallEnough_ReturnsTrue()
         {
             // arrange
-            var customers = BuildCustomers(10);
+            var people = BuildPeople(10);
 
             // act
-            var result = _linqKatas.CheckAllCustomersTallEnough(customers, 101);
+            var result = _linqKatas.CheckAllPeopleTallEnough(people, 101);
 
             // assert
             Assert.True(result);
@@ -558,10 +558,10 @@ namespace Katas.Test
         public void GivenEmptyList_ReturnsEmpty()
         {
             // arrange
-            var customers = new List<Customer>();
+            var people = new List<Person>();
 
             // act
-            var result = _linqKatas.GetFirstOfEachFamily(customers);
+            var result = _linqKatas.GetFirstOfEachFamily(people);
 
             // assert
             Assert.Empty(result);
@@ -571,36 +571,36 @@ namespace Katas.Test
         public void GivenNoSurnameVariation_ReturnsSinglePerson()
         {
             // arrange
-            var customers = BuildCustomers(5);
+            var people = BuildPeople(5);
 
             // act
-            var result = _linqKatas.GetFirstOfEachFamily(customers);
+            var result = _linqKatas.GetFirstOfEachFamily(people);
 
             // assert
             Assert.True(result.Count == 1);
-            Assert.Equal(result[0].Id, customers[0].Id);
+            Assert.Equal(result[0].Id, people[0].Id);
         }
 
         [Fact]
         public void GivenMultipleSurnames_ReturnsOnePersonPerFamily()
         {
             // arrange
-            var customers = BuildCustomers(6);
+            var people = BuildPeople(6);
 
-            customers[2].Surname = "Smith";
-            customers[3].Surname = "Smith";
-            customers[4].Surname = "White";
-            customers[5].Surname = "White";
+            people[2].Surname = "Smith";
+            people[3].Surname = "Smith";
+            people[4].Surname = "White";
+            people[5].Surname = "White";
 
 
             // act
-            var result = _linqKatas.GetFirstOfEachFamily(customers);
+            var result = _linqKatas.GetFirstOfEachFamily(people);
 
             // assert
             Assert.True(result.Count == 3);
-            Assert.Equal(result[0].Id, customers[0].Id);
-            Assert.Equal(result[1].Id, customers[2].Id);
-            Assert.Equal(result[2].Id, customers[4].Id);
+            Assert.Equal(result[0].Id, people[0].Id);
+            Assert.Equal(result[1].Id, people[2].Id);
+            Assert.Equal(result[2].Id, people[4].Id);
         }
     }
 
@@ -612,10 +612,10 @@ namespace Katas.Test
         public void GivenEmptyList_ReturnsEmpty()
         {
             // arrange
-            var customers = new List<Customer>();
+            var people = new List<Person>();
 
             // act
-            var result = _linqKatas.GroupIntoFamilies(customers);
+            var result = _linqKatas.GroupIntoFamilies(people);
 
             // assert
             Assert.Empty(result);
@@ -625,28 +625,28 @@ namespace Katas.Test
         public void GivenNoSurnameVariation_ReturnsSingleDictionaryEntry()
         {
             // arrange
-            var customers = BuildCustomers(4);
+            var people = BuildPeople(4);
 
             // act
-            var result = _linqKatas.GroupIntoFamilies(customers);
+            var result = _linqKatas.GroupIntoFamilies(people);
 
             // assert
             Assert.Single(result);
-            Assert.True(result.ElementAt(0).Value.Count == customers.Count);
+            Assert.True(result.ElementAt(0).Value.Count == people.Count);
         }
 
         [Fact]
         public void GivenMultipleSurnames_ReturnsMixedDictionary()
         {
             // arrange
-            var customers = BuildCustomers(6);
+            var people = BuildPeople(6);
 
-            customers[3].Surname = "Smith";
-            customers[4].Surname = "Smith";
-            customers[5].Surname = "Smith";
+            people[3].Surname = "Smith";
+            people[4].Surname = "Smith";
+            people[5].Surname = "Smith";
 
             // act
-            var result = _linqKatas.GroupIntoFamilies(customers);
+            var result = _linqKatas.GroupIntoFamilies(people);
 
             // assert
             Assert.True(result.Count() == 2);
