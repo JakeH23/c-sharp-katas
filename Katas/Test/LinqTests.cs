@@ -443,7 +443,7 @@ namespace Katas.Test
             var result = _linqKatas.CalculateAverageHeight(people);
 
             // assert
-            Assert.True(180, result);
+            Assert.Equal(180, result);
         }
 
         [Fact]
