@@ -261,7 +261,7 @@ namespace Katas.Test
             var result = _linqKatas.CheckIfPersonExists(people, TargetName);
 
             // assert
-            Assert.Null(result);
+            Assert.True(result);
         }
 
         [Fact]
@@ -277,7 +277,7 @@ namespace Katas.Test
             var result = _linqKatas.CheckIfPersonExists(people, TargetName);
 
             // assert
-            Assert.Null(result);
+            Assert.True(result);
         }
     }
 
