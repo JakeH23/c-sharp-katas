@@ -261,7 +261,7 @@ namespace Katas.Test
             var result = _linqKatas.CheckIfPersonExists(people, TargetName);
 
             // assert
-            Assert.Null(result);
+            Assert.True(result);
         }
 
         [Fact]
@@ -277,7 +277,7 @@ namespace Katas.Test
             var result = _linqKatas.CheckIfPersonExists(people, TargetName);
 
             // assert
-            Assert.Null(result);
+            Assert.True(result);
         }
     }
 
@@ -428,7 +428,7 @@ namespace Katas.Test
             var result = _linqKatas.CalculateAverageHeight(people);
 
             // assert
-            Assert.True(result == 0);
+            Assert.Equal(0, result);
         }
 
         [Fact]
@@ -443,7 +443,7 @@ namespace Katas.Test
             var result = _linqKatas.CalculateAverageHeight(people);
 
             // assert
-            Assert.True(result == 180);
+            Assert.Equal(180, result);
         }
 
         [Fact]
@@ -453,14 +453,14 @@ namespace Katas.Test
             var people = BuildPeople(3);
 
             people[0].HeightCM = 180;
-            people[0].HeightCM = 200;
-            people[0].HeightCM = 220;
+            people[1].HeightCM = 200;
+            people[2].HeightCM = 220;
 
             // act
             var result = _linqKatas.CalculateAverageHeight(people);
 
             // assert
-            Assert.True(result == 200);
+            Assert.Equal(200, result);
         }
     }
 

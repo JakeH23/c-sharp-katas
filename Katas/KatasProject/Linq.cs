@@ -71,7 +71,7 @@ namespace Katas.Linq
             return 0;
         }
 
-        // #10 return a dictionary of id/"firstName+surname" key/vvalue pairs
+        // #10 return a dictionary of id/"firstName+surname" key/value pairs
 
         public Dictionary<Guid, string> CustomerDictionary(List<Person> people)
         {
