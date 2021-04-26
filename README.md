@@ -78,7 +78,7 @@ Takes a string, returns a sassy version of the string (alternating lower/upper c
 e.g. `thanks for the coffee` gets turned into `tHaNkS FoR ThE CoFfEe`.
 
 ### CheckHeight
-Take a List of customers, filters out those with `HeightCM` under 161.
+Take a List of people, filters out those with `HeightCM` under 161.
 
 ### TwitterFeedAnalysis
 Takes a collection of strings, checks each string for any mentions (strings starting with `@`) + hashtags (strings starting with `#`), returns a dictionary of mentions + hashtags with a count

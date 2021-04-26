@@ -475,7 +475,7 @@ namespace Katas.Test
             var people = new List<Person>();
 
             // act
-            var result = _linqKatas.CustomerDictionary(people);
+            var result = _linqKatas.PersonDictionary(people);
 
             // assert
             Assert.Empty(result);
@@ -488,7 +488,7 @@ namespace Katas.Test
             var people = BuildPeople(3);
 
             // act
-            var result = _linqKatas.CustomerDictionary(people);
+            var result = _linqKatas.PersonDictionary(people);
 
             // assert
             var first = result.ElementAt(0);
