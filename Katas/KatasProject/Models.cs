@@ -21,10 +21,11 @@ namespace Katas.Models
         public string Value { get; set; }
     }
 
-    public class Customer
+    public class Person
     {
-        public string Id { get; set; }
-        public string Name { get; set; }
+        public Guid Id { get; set; }
+        public string FirstName { get; set; }
+        public string Surname { get; set; }
         public int HeightCM { get; set; }
     }
 

@@ -1,17 +1,16 @@
 using System.Collections.Generic;
-using Katas;
+using Katas.Base;
 using Katas.Models;
 using Xunit;
 
-namespace Test
+namespace Katas.Test
 {
-    public class KatasTestClass
+    public class KatasTestBase
     {
-        public KatasClass _testClass = new KatasClass();
+        internal KatasBase _testClass = new KatasBase();
     }
 
-
-    public class MultiplyInts : KatasTestClass
+    public class MultiplyInts : KatasTestBase
     {
         [Fact]
         public void ReturnsMultipleOfTwoNumbers()
@@ -42,33 +41,7 @@ namespace Test
         }
     }
 
-    public class GetLargestNum : KatasTestClass
-    {
-        [Fact]
-        public void Returns0_WhenPassedEmptyList()
-        {
-            // arrange
-            var testList = new List<int> { };
-            // assert
-            var result = _testClass.GetLargestNum(testList);
-            // act
-            Assert.Equal(0, result);
-
-        }
-
-        [Fact]
-        public void ReturnsNum_WhenPassedListWithSingleNum()
-        {
-            // arrange
-            var testList = new List<int> { 50 };
-            // assert
-            var result = _testClass.GetLargestNum(testList);
-            // act
-            Assert.Equal(50, result);
-        }
-    }
-
-    public class EvolvePokemon : KatasTestClass
+    public class EvolvePokemon : KatasTestBase
     {
         [Fact]
         public void GivenDiglett_ReturnsDugtrio()
@@ -87,7 +60,7 @@ namespace Test
         }
     }
 
-    public class SumArgs : KatasTestClass
+    public class SumArgs : KatasTestBase
     {
         [Fact]
         public void Returns0_WhenPassedNoArgs()
@@ -132,7 +105,7 @@ namespace Test
         }
     }
 
-    public class CounterSpy : KatasTestClass
+    public class CounterSpy : KatasTestBase
     {
         [Fact]
         public void GivenNoAgents_ReturnsEmptyList()
@@ -205,7 +178,7 @@ namespace Test
         }
     }
 
-    public class Fibonacci : KatasTestClass
+    public class Fibonacci : KatasTestBase
     {
         [Fact]
         public void WhenGiven0_Returns0()
@@ -261,7 +234,7 @@ namespace Test
         }
     }
 
-    public class CalculateDivisors : KatasTestClass
+    public class CalculateDivisors : KatasTestBase
     {
         [Fact]
         public void Given0_Returns0()
@@ -317,7 +290,7 @@ namespace Test
         }
     }
 
-    public class PigLatin : KatasTestClass
+    public class PigLatin : KatasTestBase
     {
         [Fact]
         public void GivenEmptyString_ReturnsEmptyString()
@@ -389,7 +362,7 @@ namespace Test
         }
     }
 
-    public class HeroCareerChange : KatasTestClass
+    public class HeroCareerChange : KatasTestBase
     {
         [Fact]
         public void GivenVillagerWithOddNumberedName_ReturnsMageBattleCry()
@@ -409,8 +382,8 @@ namespace Test
         public void GivenVillagerWithEvenNumberedName_ReturnsDruidBattleCry()
         {
             // arrange
-            var testHero = new Hero { Name = "Eve" };
-            var expected = "I am Eve and I cast Fireball!";
+            var testHero = new Hero { Name = "Doug" };
+            var expected = "I, Doug, call upon the forces of nature!";
 
             // act
             var shout = _testClass.HeroCareerChange(testHero);
@@ -420,7 +393,7 @@ namespace Test
         }
     }
 
-    public class AreCatsDominant : KatasTestClass
+    public class AreCatsDominant : KatasTestBase
     {
         [Fact]
         public void GivenNoAnimals_ReturnsNull()
