@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Katas.Linq;
 using Katas.Models;
 using Xunit;
 
-namespace Katas.Test
+namespace Katas.Linq.Test
 {
-    public class LinqTests : KatasTestBase
+    public class LinqTestsBase
     {
         internal LinqKatas _linqKatas = new LinqKatas();
 
@@ -31,9 +30,7 @@ namespace Katas.Test
         }
     }
 
-    // #1
-
-    public class GetLargestNum : LinqTests
+    public class GetLargestNum : LinqTestsBase
     {
         [Fact]
         public void GivenEmptyList_Returns0()
@@ -75,9 +72,7 @@ namespace Katas.Test
         }
     }
 
-    // #2
-
-    public class GetFirstPerson : LinqTests
+    public class GetFirstPerson : LinqTestsBase
     {
         [Fact]
         public void GivenEmptyList_ReturnsNull()
@@ -116,9 +111,7 @@ namespace Katas.Test
         }
     }
 
-    // #3
-
-    public class GetFirstPersonOver : LinqTests
+    public class GetFirstPersonOver : LinqTestsBase
     {
         [Fact]
         public void GivenEmptyList_ReturnsNull()
@@ -164,9 +157,7 @@ namespace Katas.Test
         }
     }
 
-    // #4
-
-    public class GetUniquePersonByFirstName : LinqTests
+    public class GetUniquePersonByFirstName : LinqTestsBase
     {
         private string TargetName = "Freddy";
 
@@ -217,9 +208,7 @@ namespace Katas.Test
         }
     }
 
-    // #5
-
-    public class CheckIfPersonExists : LinqTests
+    public class CheckIfPersonExists : LinqTestsBase
     {
         private string TargetName = "Freddy";
 
@@ -281,9 +270,7 @@ namespace Katas.Test
         }
     }
 
-    // #6
-
-    public class GetSurnames : LinqTests
+    public class GetSurnames : LinqTestsBase
     {
         [Fact]
         public void GivenEmptyList_ReturnsEmpty()
@@ -318,9 +305,7 @@ namespace Katas.Test
         }
     }
 
-    // #7
-
-    public class GetAllFirstNamesOfFamilyMembers : LinqTests
+    public class GetAllFirstNamesOfFamilyMembers : LinqTestsBase
     {
         [Fact]
         public void GivenEmptyList_ReturnsEmpty()
@@ -372,9 +357,7 @@ namespace Katas.Test
         }
     }
 
-    // #8
-
-    public class OrderpeopleByHeight : LinqTests
+    public class OrderpeopleByHeight : LinqTestsBase
     {
         [Fact]
         public void GivenEmptyList_ReturnsEmpty()
@@ -414,9 +397,7 @@ namespace Katas.Test
         }
     }
 
-    // #9
-
-    public class CalculateAverageHeight : LinqTests
+    public class CalculateAverageHeight : LinqTestsBase
     {
         [Fact]
         public void GivenEmptyList_Returns0()
@@ -464,9 +445,7 @@ namespace Katas.Test
         }
     }
 
-    // #10
-
-    public class PersonDictionary : LinqTests
+    public class PersonDictionary : LinqTestsBase
     {
         [Fact]
         public void GivenEmptyList_ReturnsEmptyDictionary()
@@ -504,9 +483,7 @@ namespace Katas.Test
         }
     }
 
-    // #11
-
-    public class CheckAllpeopleTallEnough : LinqTests
+    public class CheckAllpeopleTallEnough : LinqTestsBase
     {
         [Fact]
         public void GivenEmptyList_ReturnsFalse()
@@ -550,9 +527,7 @@ namespace Katas.Test
         }
     }
 
-    // #12
-
-    public class GetFirstOfEachFamily : LinqTests
+    public class GetFirstOfEachFamily : LinqTestsBase
     {
         [Fact]
         public void GivenEmptyList_ReturnsEmpty()
@@ -604,9 +579,7 @@ namespace Katas.Test
         }
     }
 
-    // #13
-
-    public class GetFamilies : LinqTests
+    public class GroupIntoFamilies : LinqTestsBase
     {
         [Fact]
         public void GivenEmptyList_ReturnsEmpty()
@@ -665,6 +638,110 @@ namespace Katas.Test
             {
                 Assert.True(person.Surname == "Smith");
             }
+        }
+    }
+
+    public class GenerateHashSetOfIds : LinqTestsBase
+    {
+        [Fact]
+        public void GivenEmptyList_ReturnsEmptySet()
+        {
+            // arrange
+            var people = new List<Person>();
+
+            // act
+            var result = _linqKatas.GenerateHashSetOfIds(people);
+
+            // assert
+            Assert.Empty(result);
+        }
+
+        [Fact]
+        public void GivenListWithDuplicateIds_ReturnsSetWithSingle()
+        {
+            // arrange
+            var people = BuildPeople(2);
+
+            var id = Guid.NewGuid();
+
+            people[0].Id = id;
+            people[1].Id = id;
+
+            // act
+            var result = _linqKatas.GenerateHashSetOfIds(people);
+
+            // assert
+            Assert.Single(result);
+            Assert.Equal(result.ElementAt(0), id);
+        }
+
+        [Fact]
+        public void GivenListWithoutDuplicateIds_ReturnsSetOfEqualLength()
+        {
+            // arrange
+            var people = BuildPeople(10);
+
+            // act
+            var result = _linqKatas.GenerateHashSetOfIds(people);
+
+            // assert
+            Assert.Equal(result.Count(), people.Count);
+        }
+    }
+
+    public class MergeAndDedupe : LinqTestsBase
+    {
+        [Fact]
+        public void GivenEmptyLists_ReturnsEmptyList()
+        {
+            // arrange
+            var list1 = new List<int>();
+            var list2 = new List<int>();
+
+            // act
+            var result = _linqKatas.MergeAndDedupe(list1, list2);
+
+            // assert
+            Assert.Empty(result);
+        }
+
+        [Fact]
+        public void GivenListsWithoutDupes_ReturnsMergedList()
+        {
+            // arrange
+            var list1 = new List<int> { 1, 2, 3 };
+            var list2 = new List<int> { 4, 5, 6 };
+
+            // act
+            var result = _linqKatas.MergeAndDedupe(list1, list2);
+
+            // assert
+            Assert.Equal(6, result.Count());
+            Assert.Contains(1, result);
+            Assert.Contains(2, result);
+            Assert.Contains(3, result);
+            Assert.Contains(4, result);
+            Assert.Contains(5, result);
+            Assert.Contains(6, result);
+        }
+
+        [Fact]
+        public void GivenListsWithDupes_ReturnsMergedAndDedupedList()
+        {
+            // arrange
+            var list1 = new List<int> { 1, 2, 3 };
+            var list2 = new List<int> { 3, 4, 5 };
+
+            // act
+            var result = _linqKatas.MergeAndDedupe(list1, list2);
+
+            // assert
+            Assert.Equal(5, result.Count());
+            Assert.Contains(1, result);
+            Assert.Contains(2, result);
+            Assert.Contains(3, result);
+            Assert.Contains(4, result);
+            Assert.Contains(5, result);
         }
     }
 }

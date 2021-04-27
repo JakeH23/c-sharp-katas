@@ -7,9 +7,8 @@ namespace Katas.Test
 {
     public class KatasTestBase
     {
-        public KatasBase _testClass = new KatasBase();
+        internal KatasBase _testClass = new KatasBase();
     }
-
 
     public class MultiplyInts : KatasTestBase
     {

@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.808.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KatasProject", "KatasProject\KatasProject.csproj", "{C8A2D150-7E80-42FF-83E2-E881BE848E66}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test", "Test\Test.csproj", "{E90250AE-9D29-4C0A-A166-C9610637B7F2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTests", "Test\UnitTests.csproj", "{E90250AE-9D29-4C0A-A166-C9610637B7F2}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Threading", "Threading\Threading.csproj", "{F57D1B67-618F-4905-A3E9-B2EF4234CCF6}"
 EndProject
