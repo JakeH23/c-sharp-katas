@@ -9,7 +9,6 @@ namespace Katas.Test
     {
         internal KatasBase _testClass = new KatasBase();
     }
-
     public class MultiplyInts : KatasTestBase
     {
         [Fact]
@@ -40,26 +39,187 @@ namespace Katas.Test
             Assert.Equal(30, sum);
         }
     }
-
-    public class EvolvePokemon : KatasTestBase
+    public class CalculateDivisors : KatasTestBase
     {
         [Fact]
-        public void GivenDiglett_ReturnsDugtrio()
+        public void Given0_Returns0()
         {
             // arrange
-            var testDiglett = new Diglett { Level = 25 };
-            var testDiglett2 = new Diglett { Level = 30 };
 
             // act
-            var evolvedPokemon = _testClass.EvolvePokemon(testDiglett);
-            var evolvedPokemon2 = _testClass.EvolvePokemon(testDiglett2);
+            var result = _testClass.CalculateDivisors(0);
 
             // assert
-            Assert.Equal(26, evolvedPokemon.Level);
-            Assert.Equal(31, evolvedPokemon2.Level);
+            Assert.Equal(0, result);
+
+        }
+
+        [Fact]
+        public void Given5_Returns3()
+        {
+            // arrange
+
+            // act
+            var result = _testClass.CalculateDivisors(5);
+
+            // assert
+            Assert.Equal(3, result);
+
+        }
+
+
+        [Fact]
+        public void Given6_Returns8()
+        {
+            // arrange
+
+            // act
+            var result = _testClass.CalculateDivisors(6);
+
+            // assert
+            Assert.Equal(8, result);
+
+        }
+
+        [Fact]
+        public void Given12_Returns33()
+        {
+            // arrange
+
+            // act
+            var result = _testClass.CalculateDivisors(12);
+
+            // assert
+            Assert.Equal(33, result);
+
         }
     }
+    public class Fibonacci : KatasTestBase
+    {
+        [Fact]
+        public void WhenGiven0_Returns0()
+        {
+            // arrange
+            var input = 0;
 
+            // act
+            var result = _testClass.Fibonacci(input);
+
+            // assert
+            Assert.Equal(0, result);
+        }
+
+        [Fact]
+        public void WhenGiven1_Returns1()
+        {
+            // arrange
+            var input = 1;
+
+            // act
+            var result = _testClass.Fibonacci(input);
+
+            // assert
+            Assert.Equal(1, result);
+        }
+
+        [Fact]
+        public void WhenGiven4_Returns3()
+        {
+            // arrange
+            var input = 4;
+
+            // act
+            var result = _testClass.Fibonacci(input);
+
+            // assert
+            Assert.Equal(3, result);
+        }
+
+
+        [Fact]
+        public void WhenGiven15_Returns610()
+        {
+            // arrange
+            var input = 15;
+
+            // act
+            var result = _testClass.Fibonacci(input);
+
+            // assert
+            Assert.Equal(610, result);
+        }
+    }
+    public class PigLatin : KatasTestBase
+    {
+        [Fact]
+        public void GivenEmptyString_ReturnsEmptyString()
+        {
+            // arrange
+            var sentence = "";
+            var expected = "";
+            // act
+            var result = _testClass.PigLatin(sentence);
+
+            // assert
+            Assert.Equal(expected, result);
+        }
+
+        [Fact]
+        public void GivenWord_ThatBeginsWithOneConsonant_ReturnsTranslatedWord()
+        {
+            // arrange
+            var sentence = "pogo";
+            var expected = "ogopay";
+
+            // act
+            var result = _testClass.PigLatin(sentence);
+
+            // assert
+            Assert.Equal(expected, result);
+        }
+
+        [Fact]
+        public void GivenWord_ThatBeginsWithTwoConsonants_ReturnsTranslatedWord()
+        {
+            // arrange
+            var sentence = "smile";
+            var expected = "ilesmay";
+
+            // act
+            var result = _testClass.PigLatin(sentence);
+
+            // assert
+            Assert.Equal(expected, result);
+        }
+
+        [Fact]
+        public void GivenWord_ThatBeginsWithAVowel_ReturnsTranslatedWord()
+        {
+            // arrange
+            var sentence = "oblong";
+            var expected = "oblongway";
+
+            // act
+            var result = _testClass.PigLatin(sentence);
+
+            // assert
+            Assert.Equal(expected, result);
+        }
+
+        [Fact]
+        public void GivenSentence_ReturnsTranslatedSentence()
+        {
+            // arrange
+            var sentence = "avocado toast breakfast";
+            var expected = "avocadoway oasttay eakfastbray";
+
+            // act
+            var result = _testClass.PigLatin(sentence);
+
+            // assert
+            Assert.Equal(expected, result);
+        }
+    }
     public class SumArgs : KatasTestBase
     {
         [Fact]
@@ -104,7 +264,6 @@ namespace Katas.Test
             Assert.Equal(50, sum);
         }
     }
-
     public class CounterSpy : KatasTestBase
     {
         [Fact]
@@ -177,222 +336,6 @@ namespace Katas.Test
             Assert.Equal(expected, loyalAgents);
         }
     }
-
-    public class Fibonacci : KatasTestBase
-    {
-        [Fact]
-        public void WhenGiven0_Returns0()
-        {
-            // arrange
-            var input = 0;
-
-            // act
-            var result = _testClass.Fibonacci(input);
-
-            // assert
-            Assert.Equal(0, result);
-        }
-
-        [Fact]
-        public void WhenGiven1_Returns1()
-        {
-            // arrange
-            var input = 1;
-
-            // act
-            var result = _testClass.Fibonacci(input);
-
-            // assert
-            Assert.Equal(1, result);
-        }
-
-        [Fact]
-        public void WhenGiven4_Returns3()
-        {
-            // arrange
-            var input = 4;
-
-            // act
-            var result = _testClass.Fibonacci(input);
-
-            // assert
-            Assert.Equal(3, result);
-        }
-
-
-        [Fact]
-        public void WhenGiven15_Returns610()
-        {
-            // arrange
-            var input = 15;
-
-            // act
-            var result = _testClass.Fibonacci(input);
-
-            // assert
-            Assert.Equal(610, result);
-        }
-    }
-
-    public class CalculateDivisors : KatasTestBase
-    {
-        [Fact]
-        public void Given0_Returns0()
-        {
-            // arrange
-
-            // act
-            var result = _testClass.CalculateDivisors(0);
-
-            // assert
-            Assert.Equal(0, result);
-
-        }
-
-        [Fact]
-        public void Given5_Returns3()
-        {
-            // arrange
-
-            // act
-            var result = _testClass.CalculateDivisors(5);
-
-            // assert
-            Assert.Equal(3, result);
-
-        }
-
-
-        [Fact]
-        public void Given6_Returns8()
-        {
-            // arrange
-
-            // act
-            var result = _testClass.CalculateDivisors(6);
-
-            // assert
-            Assert.Equal(8, result);
-
-        }
-
-        [Fact]
-        public void Given12_Returns33()
-        {
-            // arrange
-
-            // act
-            var result = _testClass.CalculateDivisors(12);
-
-            // assert
-            Assert.Equal(33, result);
-
-        }
-    }
-
-    public class PigLatin : KatasTestBase
-    {
-        [Fact]
-        public void GivenEmptyString_ReturnsEmptyString()
-        {
-            // arrange
-            var sentence = "";
-            var expected = "";
-            // act
-            var result = _testClass.PigLatin(sentence);
-
-            // assert
-            Assert.Equal(expected, result);
-        }
-
-        [Fact]
-        public void GivenWord_ThatBeginsWithOneConsonant_ReturnsTranslatedWord()
-        {
-            // arrange
-            var sentence = "pogo";
-            var expected = "ogopay";
-
-            // act
-            var result = _testClass.PigLatin(sentence);
-
-            // assert
-            Assert.Equal(expected, result);
-        }
-
-        [Fact]
-        public void GivenWord_ThatBeginsWithTwoConsonants_ReturnsTranslatedWord()
-        {
-            // arrange
-            var sentence = "smile";
-            var expected = "ilesmay";
-
-            // act
-            var result = _testClass.PigLatin(sentence);
-
-            // assert
-            Assert.Equal(expected, result);
-        }
-
-        [Fact]
-        public void GivenWord_ThatBeginsWithAVowel_ReturnsTranslatedWord()
-        {
-            // arrange
-            var sentence = "oblong";
-            var expected = "oblongway";
-
-            // act
-            var result = _testClass.PigLatin(sentence);
-
-            // assert
-            Assert.Equal(expected, result);
-        }
-
-        [Fact]
-        public void GivenSentence_ReturnsTranslatedSentence()
-        {
-            // arrange
-            var sentence = "avocado toast breakfast";
-            var expected = "avocadoway oasttay eakfastbray";
-
-            // act
-            var result = _testClass.PigLatin(sentence);
-
-            // assert
-            Assert.Equal(expected, result);
-        }
-    }
-
-    public class HeroCareerChange : KatasTestBase
-    {
-        [Fact]
-        public void GivenVillagerWithOddNumberedName_ReturnsMageBattleCry()
-        {
-            // arrange
-            var testHero = new Hero { Name = "Eve" };
-            var expected = "I am Eve and I cast Fireball!";
-
-            // act
-            var shout = _testClass.HeroCareerChange(testHero);
-
-            // assert
-            Assert.Equal(expected, shout);
-        }
-
-        [Fact]
-        public void GivenVillagerWithEvenNumberedName_ReturnsDruidBattleCry()
-        {
-            // arrange
-            var testHero = new Hero { Name = "Doug" };
-            var expected = "I, Doug, call upon the forces of nature!";
-
-            // act
-            var shout = _testClass.HeroCareerChange(testHero);
-
-            // assert
-            Assert.Equal(expected, shout);
-        }
-    }
-
     public class AreCatsDominant : KatasTestBase
     {
         [Fact]
@@ -451,6 +394,54 @@ namespace Katas.Test
             Assert.True(result1);
             Assert.False(result2);
             Assert.Null(result3);
+        }
+    }
+    public class EvolvePokemon : KatasTestBase
+    {
+        [Fact]
+        public void GivenDiglett_ReturnsDugtrio()
+        {
+            // arrange
+            var testDiglett = new Diglett { Level = 25 };
+            var testDiglett2 = new Diglett { Level = 30 };
+
+            // act
+            var evolvedPokemon = _testClass.EvolvePokemon(testDiglett);
+            var evolvedPokemon2 = _testClass.EvolvePokemon(testDiglett2);
+
+            // assert
+            Assert.Equal(26, evolvedPokemon.Level);
+            Assert.Equal(31, evolvedPokemon2.Level);
+        }
+    }
+    public class HeroCareerChange : KatasTestBase
+    {
+        [Fact]
+        public void GivenVillagerWithOddNumberedName_ReturnsMageBattleCry()
+        {
+            // arrange
+            var testHero = new Hero { Name = "Eve" };
+            var expected = "I am Eve and I cast Fireball!";
+
+            // act
+            var shout = _testClass.HeroCareerChange(testHero);
+
+            // assert
+            Assert.Equal(expected, shout);
+        }
+
+        [Fact]
+        public void GivenVillagerWithEvenNumberedName_ReturnsDruidBattleCry()
+        {
+            // arrange
+            var testHero = new Hero { Name = "Doug" };
+            var expected = "I, Doug, call upon the forces of nature!";
+
+            // act
+            var shout = _testClass.HeroCareerChange(testHero);
+
+            // assert
+            Assert.Equal(expected, shout);
         }
     }
 }
