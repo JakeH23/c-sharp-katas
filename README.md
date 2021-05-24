@@ -50,10 +50,6 @@ PigLatin("keep on coding");
 // should return 'eepkay onway odingcay'
 ```
 
-### ConvertToSassCase
-Takes a string, returns a sassy version of the string (alternating lower/upper case characters)
-e.g. `thanks for the coffee` gets turned into `tHaNkS FoR ThE CoFfEe`.
-
 ### SumArgs
 Returns the sum of zero or more numbers. When passed no numbers returns 0.
 
@@ -78,6 +74,10 @@ Practice unit testing by solving the following katas using Test Driven Developme
 
 ### CheckHeight
 Take a Person and check if their height is over 155cm.
+
+### ConvertToSassCase
+Takes a string, returns a sassy version of the string (alternating lower/upper case characters)
+e.g. `thanks for the coffee` gets turned into `tHaNkS FoR ThE CoFfEe`.
 
 ### TwitterFeedAnalysis
 Takes a collection of strings, checks each string for any mentions (strings starting with `@`) + hashtags (strings starting with `#`), returns a dictionary of mentions + hashtags with a count
