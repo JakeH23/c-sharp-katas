@@ -29,11 +29,6 @@ namespace Katas.Base
             return "";
         }
 
-        public string ConvertToSassCase(string input)
-        {
-            return "";
-        }
-
         /// Iteration
         public int SumArgs(params int[] nums)
         {
