@@ -25,7 +25,41 @@ namespace Katas.Linq
 
         public string DominantFamily(List<Person> people)
         {
-            return null;
+            var peopleDictionary = new Dictionary<string, int>();
+            foreach (var person in people)
+            {
+                if (!peopleDictionary.ContainsKey(person.Surname))
+                {
+                    var surnameList = people.Where(x => x.Surname == person.Surname);
+                    peopleDictionary.Add(person.Surname, surnameList.Count());
+                }
+            }
+
+            var mostCommonSurnames = peopleDictionary.Where(x => x.Value == peopleDictionary.Values.Max()).ToList();
+
+            switch (mostCommonSurnames.Count)
+            {
+                case 0:
+                    return string.Empty;
+                case 1:
+                    return mostCommonSurnames.FirstOrDefault().Key;
+                default:
+                {
+                    var peopleFirstNameDictionary = new Dictionary<string, int>();
+                    foreach (var person in mostCommonSurnames)
+                    {
+                        var count = 0;
+                        var personList = people.Where(x => x.Surname == person.Key).ToList();
+                        foreach (var name in personList)
+                        {
+                            count += name.FirstName.Length;
+                        }
+                        peopleFirstNameDictionary.Add(person.Key, count);
+                    }
+
+                    return peopleFirstNameDictionary.FirstOrDefault(x => x.Value == peopleFirstNameDictionary.Values.Max()).Key;
+                }
+            }
         }
 
         public List<int> Flatten(List<List<int>> deepList)

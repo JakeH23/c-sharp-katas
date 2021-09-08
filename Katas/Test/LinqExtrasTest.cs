@@ -276,8 +276,8 @@ namespace Katas.LinqExtras.Test
             var people = BuildPeople(3);
 
             people[1].FirstName = "Ali";
-            people[2].Surname = "Smith";
-            people[1].FirstName = "Bob";
+            people[1].Surname = "Smith";
+            people[2].FirstName = "Bob";
             people[2].Surname = "Smith";
 
             // act
