@@ -33,37 +33,65 @@ namespace Katas.Base
 
         public int Fibonacci(int num)
         {
-            //return Fibonacci(num - 1) + Fibonacci(num - 2);
-            return 0;
+            var firstNumber = 0;
+            var secondNumber = 1;
+            var result = 0;
+
+            switch (num)
+            {
+                case 0:
+                    return 0;
+                case 1:
+                    return 1;
+                default:
+                    for (var i = 2; i <= num; i++)
+                    {
+                        result = firstNumber + secondNumber;
+                        firstNumber = secondNumber;
+                        secondNumber = result;
+                    }
+
+                    return result;
+            }
         }
 
         /// Strings
         public string PigLatin(string sentence)
         {
-            if (string.IsNullOrEmpty(sentence))
+            if (string.IsNullOrEmpty(sentence)) return string.Empty;
+
+            var vowels = new List<string> { "a", "e", "i", "o", "u" };
+
+            var splitSentence = sentence.Split(" ");
+
+            for (var i = 0; i < splitSentence.Length; i++)
             {
-                return string.Empty;
-            }
-
-            var vowels = "aeiou";
-            var pigWords = new List<string>();
-
-            foreach (string word in sentence.Split(' '))
-            {
-                var firstLetter = word.Substring(0, 1).ToLower();
-                var restOfWord = word.Substring(1, word.Length - 1).ToLower();
-                var currentLetter = vowels.IndexOf(firstLetter);
-
-                if (currentLetter == -1)
+                if (vowels.Contains(splitSentence[i].Substring(0, 1)))
                 {
-                    pigWords.Add(restOfWord + firstLetter + "ay");
+                    splitSentence[i] = $"{splitSentence[i]}way";
                 }
                 else
                 {
-                    pigWords.Add(word + "way");
+                    var wordWithoutFirstLetter = splitSentence[i].Substring(1, splitSentence[i].Length - 1);
+                    splitSentence[i] = $"{wordWithoutFirstLetter}{splitSentence[i].Substring(0, 1)}";
+
+                    for (var j = 0; j < splitSentence[i].Length; j++)
+                    {
+                        if (!vowels.Contains(splitSentence[i].Substring(0, 1)))
+                        {
+                            wordWithoutFirstLetter = splitSentence[i].Substring(1, splitSentence[i].Length - 1);
+                            splitSentence[i] = $"{wordWithoutFirstLetter}{splitSentence[i].Substring(0, 1)}";
+                            continue;
+                        }
+
+                        break;
+                    }
+
+                    splitSentence[i] += "ay";
                 }
             }
-            return string.Join(" ", pigWords);
+
+            return string.Join(" ", splitSentence);
         }
 
         /// Iteration
