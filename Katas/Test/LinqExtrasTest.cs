@@ -309,4 +309,45 @@ namespace Katas.LinqExtras.Test
             Assert.Equal("Heaney", result);
         }
     }
+
+
+    //Return a flattened List of integers from a nested List with one level of nesting(though the parent List can have multiple nested Lists).
+    public class Flatten : LinqExtrasTest
+    {
+        [Fact]
+        public void GivenNestedSingleListOfInts_ReturnSingleNonNestedList()
+        {
+            // arrange
+            var listOfLists = new List<List<int>>()
+            {
+                new List<int> { 1, 2, 3 }
+            };
+
+            // act
+            var result = _linqExtras.Flatten(listOfLists);
+
+            // assert
+            Assert.Equal(3, result.Count);
+            Assert.Equal("1,2,3", string.Join(",", result));
+        }
+
+        [Fact]
+        public void GivenMultipleNestedListsOfInts_ReturnSingleNonNestedList()
+        {
+            // arrange
+            var listOfLists = new List<List<int>>()
+            {
+                new List<int> { 1, 2, 3 },
+                new List<int> { 4, 5 },
+                new List<int> { 6, 7, 8, 9 }
+            };
+
+            // act
+            var result = _linqExtras.Flatten(listOfLists);
+
+            // assert
+            Assert.Equal(9, result.Count);
+            Assert.Equal("1,2,3,4,5,6,7,8,9", string.Join(",", result));
+        }
+    }
 }

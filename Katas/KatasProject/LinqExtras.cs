@@ -44,27 +44,28 @@ namespace Katas.Linq
                 case 1:
                     return mostCommonSurnames.FirstOrDefault().Key;
                 default:
-                {
-                    var peopleFirstNameDictionary = new Dictionary<string, int>();
-                    foreach (var person in mostCommonSurnames)
                     {
-                        var count = 0;
-                        var personList = people.Where(x => x.Surname == person.Key).ToList();
-                        foreach (var name in personList)
+                        var peopleFirstNameDictionary = new Dictionary<string, int>();
+                        foreach (var person in mostCommonSurnames)
                         {
-                            count += name.FirstName.Length;
+                            var count = 0;
+                            var personList = people.Where(x => x.Surname == person.Key).ToList();
+                            foreach (var name in personList)
+                            {
+                                count += name.FirstName.Length;
+                            }
+                            peopleFirstNameDictionary.Add(person.Key, count);
                         }
-                        peopleFirstNameDictionary.Add(person.Key, count);
-                    }
 
-                    return peopleFirstNameDictionary.FirstOrDefault(x => x.Value == peopleFirstNameDictionary.Values.Max()).Key;
-                }
+                        return peopleFirstNameDictionary.FirstOrDefault(x => x.Value == peopleFirstNameDictionary.Values.Max()).Key;
+                    }
             }
         }
 
         public List<int> Flatten(List<List<int>> deepList)
         {
-            return null;
+            var flattenedList = deepList.SelectMany(x => x).ToList();
+            return flattenedList;
         }
     }
 }
